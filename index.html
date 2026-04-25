@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arwa Beauty — أروى بيوتي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;500;600;700&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0A0A0A;
+  --black-2:#141414;
+  --black-3:#1C1C1C;
+  --dark-warm:#181412;
+  --cream:#F5F0E8;
+  --cream-soft:#E8DDC8;
+  --gold:#B8924E;
+  --gold-light:#D4B576;
+  --rose:#C8847E;
+  --line:rgba(212,181,118,.15);
+  --line-2:rgba(245,240,232,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--cream);
+  font-family:'Tajawal',sans-serif;
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+::selection{background:var(--gold);color:var(--black)}
+
+/* ============== ATMOSPHERIC EFFECTS ============== */
+.bg-grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}
+
+/* ============== NAV ============== */
+nav{position:fixed;top:0;right:0;left:0;z-index:100;padding:20px 6vw;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,10,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line);transition:all .4s}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.brand-logo{width:48px;height:48px;display:grid;place-items:center;border:1.5px solid var(--gold);border-radius:50%;color:var(--gold);background:transparent}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-name{font-family:'Cinzel',serif;font-size:20px;color:var(--cream);letter-spacing:6px;font-weight:500}
+.brand-ar{font-family:'Cormorant',serif;font-style:italic;font-size:14px;color:var(--gold);letter-spacing:2px;margin-top:4px}
+.nav-links{display:flex;gap:42px;align-items:center}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:11px;font-family:'Cinzel',serif;font-weight:400;letter-spacing:3px;text-transform:uppercase;transition:color .3s;position:relative;padding:6px 0}
+.nav-links a::after{content:'';position:absolute;right:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .35s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:14px 32px;background:transparent;color:var(--cream);border:1px solid var(--cream);font-family:'Cinzel',serif;font-size:11px;font-weight:400;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .35s}
+.nav-cta:hover{background:var(--cream);color:var(--black)}
+
+.menu-toggle{display:none;background:transparent;border:none;width:40px;height:40px;cursor:pointer;padding:0;position:relative;z-index:101}
+.menu-toggle span{display:block;width:26px;height:1px;background:var(--cream);margin:6px auto;transition:all .3s}
+.menu-toggle.open span{background:var(--cream)}
+.menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle.open span:nth-child(2){opacity:0}
+.menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.mobile-drawer{position:fixed;top:0;right:-100%;width:88%;max-width:380px;height:100vh;background:var(--black-2);z-index:99;transition:right .5s cubic-bezier(.65,0,.35,1);box-shadow:-30px 0 80px rgba(0,0,0,.5);padding:100px 36px 40px;overflow-y:auto;border-left:1px solid var(--line)}
+.mobile-drawer.open{right:0}
+.mobile-drawer a{display:block;padding:22px 0;color:var(--cream);text-decoration:none;font-family:'Cinzel',serif;font-size:14px;font-weight:400;letter-spacing:4px;border-bottom:1px solid var(--line);transition:all .3s;text-transform:uppercase}
+.mobile-drawer a:hover,.mobile-drawer a:active{color:var(--gold);padding-right:8px}
+.mobile-drawer-cta{margin-top:40px;padding:18px;background:var(--cream);color:var(--black)!important;text-align:center;border-bottom:none!important;font-weight:500!important;letter-spacing:3px!important}
+.mobile-drawer-social{display:flex;gap:14px;justify-content:center;margin-top:36px;padding-top:30px;border-top:1px solid var(--line)}
+.mobile-drawer-social a{padding:0;border:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--cream);border:1px solid var(--line)}
+.mobile-drawer-social a:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);z-index:98;opacity:0;visibility:hidden;transition:all .3s}
+.drawer-overlay.open{opacity:1;visibility:visible}
+
+/* ============== HERO ============== */
+.hero{position:relative;min-height:100vh;width:100%;overflow:hidden;display:grid;place-items:center;z-index:2}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.4) 50%,rgba(10,10,10,.85) 100%);z-index:2}
+.hero-content{position:relative;z-index:3;text-align:center;padding:120px 6vw 80px;max-width:1100px;width:100%}
+.hero-eyebrow{display:inline-block;font-family:'Cinzel',serif;font-size:13px;color:var(--gold);letter-spacing:8px;margin-bottom:36px;text-transform:uppercase;padding-bottom:14px;border-bottom:1px solid var(--gold)}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(60px,11vw,160px);line-height:1;color:var(--cream);font-weight:400;letter-spacing:8px;text-transform:uppercase;margin-bottom:28px}
+.hero h1 .small{display:block;font-size:.45em;letter-spacing:14px;font-weight:300;margin-bottom:16px;opacity:.85}
+.hero h1 em{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:.32em;letter-spacing:6px;margin-top:30px;color:var(--gold);text-transform:none;opacity:.95}
+.hero-actions{display:flex;gap:18px;justify-content:center;margin-top:48px;flex-wrap:wrap}
+.btn-primary{padding:18px 44px;background:var(--cream);color:var(--black);border:none;font-family:'Cinzel',serif;font-size:11px;font-weight:500;letter-spacing:4px;cursor:pointer;text-transform:uppercase;transition:all .35s;display:inline-flex;align-items:center;gap:14px}
+.btn-primary:hover{background:var(--gold);transform:translateY(-2px)}
+.btn-ghost{padding:18px 44px;background:transparent;color:var(--cream);border:1px solid var(--cream);font-family:'Cinzel',serif;font-size:11px;font-weight:400;letter-spacing:4px;cursor:pointer;text-transform:uppercase;transition:all .35s}
+.btn-ghost:hover{background:var(--cream);color:var(--black)}
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:3;color:var(--cream);font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;opacity:.6;animation:bounce 2.5s infinite}
+.scroll-indicator::after{content:'';display:block;width:1px;height:30px;background:var(--cream);margin:14px auto 0;opacity:.5}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
+
+/* ============== SECTIONS ============== */
+section{position:relative;z-index:2}
+.section-pad{padding:140px 6vw}
+.section-head{text-align:center;margin-bottom:90px}
+.section-eyebrow{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:6px;margin-bottom:24px;display:inline-block;text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid var(--gold)}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(36px,5.5vw,72px);color:var(--cream);font-weight:400;line-height:1.15;letter-spacing:6px;text-transform:uppercase}
+.section-title em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-weight:300;display:block;font-size:.45em;letter-spacing:4px;margin-top:18px;text-transform:none}
+.section-sub{margin-top:30px;color:var(--cream-soft);font-size:15px;max-width:600px;margin-left:auto;margin-right:auto;font-weight:300;line-height:1.9;letter-spacing:.3px}
+.divider-line{width:60px;height:1px;background:var(--gold);margin:30px auto;opacity:.6}
+
+/* ============== ABOUT (split with image) ============== */
+.about{background:var(--black);position:relative;overflow:hidden}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0;min-height:700px}
+.about-img-wrap{position:relative;height:100%;min-height:600px;overflow:hidden}
+.about-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85) contrast(1.05)}
+.about-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(10,10,10,.3));pointer-events:none}
+.about-text{padding:80px 70px;background:var(--black)}
+.about-eyebrow{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:6px;margin-bottom:30px;text-transform:uppercase;padding-bottom:14px;border-bottom:1px solid var(--gold);display:inline-block}
+.about-text h2{font-family:'Cinzel',serif;font-size:clamp(36px,4.5vw,56px);color:var(--cream);font-weight:400;line-height:1.2;letter-spacing:5px;margin-bottom:30px;text-transform:uppercase}
+.about-text h2 em{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:.42em;letter-spacing:3px;margin-top:18px;font-weight:300;text-transform:none}
+.about-text p{color:var(--cream-soft);font-size:15px;line-height:2;margin-bottom:22px;font-weight:300;letter-spacing:.3px}
+.about-text p strong{color:var(--cream);font-weight:500}
+.about-cta{margin-top:38px;display:inline-flex;align-items:center;gap:16px;color:var(--cream);text-decoration:none;font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;padding-bottom:10px;border-bottom:1px solid var(--gold);text-transform:uppercase;transition:all .35s}
+.about-cta:hover{color:var(--gold);gap:24px}
+
+/* ============== SERVICES ============== */
+.services{background:var(--dark-warm);position:relative}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.service-card{padding:60px 40px;text-align:center;border-right:1px solid var(--line);position:relative;cursor:pointer;transition:background .5s;background:transparent}
+.service-card:nth-child(3n){border-right:none}
+.service-card:nth-child(n+4){border-top:1px solid var(--line)}
+.service-card:hover{background:var(--black-3)}
+.service-num{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:13px;letter-spacing:3px;margin-bottom:24px;display:block}
+.service-icon{width:54px;height:54px;color:var(--gold);margin:0 auto 28px;transition:transform .5s}
+.service-card:hover .service-icon{transform:scale(1.1) rotate(-3deg)}
+.service-name{font-family:'Cinzel',serif;font-size:22px;color:var(--cream);margin-bottom:18px;font-weight:400;letter-spacing:4px;text-transform:uppercase}
+.service-desc{color:var(--cream-soft);font-size:14px;line-height:1.9;margin-bottom:28px;min-height:80px;font-weight:300}
+.service-meta{display:flex;justify-content:center;align-items:center;gap:30px;padding-top:24px;border-top:1px solid var(--line)}
+.service-price{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--cream);font-weight:400;font-style:italic}
+.service-price small{font-size:13px;color:var(--cream-soft);margin-right:6px;font-style:normal;font-family:'Cinzel',serif;letter-spacing:1px}
+.service-duration{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+
+/* ============== GALLERY ============== */
+.gallery{background:var(--black);padding-bottom:0!important}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.gallery-item{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1;background:var(--black-2)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 1s,filter .5s;filter:grayscale(.15) saturate(.9)}
+.gallery-item:hover img{transform:scale(1.08);filter:grayscale(0) saturate(1.1)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.85) 100%);pointer-events:none}
+.gallery-item.tall{aspect-ratio:1/2;grid-row:span 2}
+.gallery-label{position:absolute;bottom:24px;right:24px;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--cream);font-size:16px;letter-spacing:1px;z-index:2;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.gallery-tag{position:absolute;top:24px;left:24px;font-size:10px;color:var(--cream);letter-spacing:3px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);padding:7px 14px;border:1px solid rgba(212,181,118,.4);font-family:'Cinzel',serif;font-weight:400;z-index:2;text-transform:uppercase}
+.gallery-cta{text-align:center;padding:60px 6vw;background:var(--black)}
+.gallery-cta a{display:inline-flex;align-items:center;gap:14px;color:var(--cream);text-decoration:none;font-family:'Cinzel',serif;font-size:12px;letter-spacing:5px;padding-bottom:10px;border-bottom:1px solid var(--gold);text-transform:uppercase;transition:all .35s}
+.gallery-cta a:hover{color:var(--gold);gap:24px}
+
+/* ============== STORY (full width quote) ============== */
+.story-section{background:var(--dark-warm);position:relative;padding:140px 6vw;text-align:center;overflow:hidden}
+.story-section::before{content:'"';position:absolute;top:60px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:280px;color:var(--gold);opacity:.08;line-height:1}
+.story-content{max-width:900px;margin:0 auto;position:relative;z-index:2}
+.story-eyebrow{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:6px;margin-bottom:36px;text-transform:uppercase}
+.story-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.6vw,46px);color:var(--cream);font-weight:300;font-style:italic;line-height:1.4;margin-bottom:48px;letter-spacing:.3px}
+.story-author{font-family:'Cinzel',serif;font-size:13px;color:var(--gold);letter-spacing:5px;text-transform:uppercase}
+.story-author::before{content:'';display:block;width:50px;height:1px;background:var(--gold);margin:0 auto 18px}
+
+/* ============== BOOKING ============== */
+.booking{background:var(--black-2);padding:140px 6vw}
+.booking-wrap{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);background:var(--black);max-width:1200px;margin:0 auto}
+.booking-summary{padding:60px 50px;background:var(--dark-warm);position:relative;border-left:1px solid var(--line)}
+.summary-title{font-family:'Cinzel',serif;font-size:22px;color:var(--cream);margin-bottom:8px;font-weight:400;letter-spacing:4px;text-transform:uppercase}
+.summary-desc{color:var(--cream-soft);font-size:13px;margin-bottom:40px;font-weight:300;letter-spacing:.5px}
+.summary-block{padding:22px 0;border-bottom:1px solid var(--line)}
+.summary-block:last-of-type{border-bottom:none}
+.summary-label{font-family:'Cinzel',serif;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:12px;text-transform:uppercase}
+.summary-value{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--cream);font-weight:400;font-style:italic}
+.summary-value.empty{color:var(--cream-soft);opacity:.5;font-size:14px}
+.summary-total{margin-top:36px;padding:26px 0;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);display:flex;justify-content:space-between;align-items:center}
+.summary-total span:first-child{font-family:'Cinzel',serif;font-size:14px;color:var(--cream);letter-spacing:3px;text-transform:uppercase}
+.summary-total span:last-child{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--gold);font-weight:400;font-style:italic}
+.summary-trust{margin-top:30px;font-size:11px;color:var(--cream-soft);line-height:1.9;text-align:center;font-family:'Cinzel',serif;letter-spacing:1.5px;opacity:.7}
+
+.booking-form{padding:60px 50px;background:var(--black)}
+.form-step{display:none;animation:fadeStep .5s ease}
+.form-step.active{display:block}
+@keyframes fadeStep{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.steps-indicator{display:flex;gap:10px;margin-bottom:40px}
+.step-pill{flex:1;height:2px;background:var(--line);transition:background .4s}
+.step-pill.active{background:var(--gold)}
+.step-pill.done{background:var(--cream)}
+.step-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}
+.step-title span:first-child{font-family:'Cinzel',serif;font-size:13px;color:var(--cream);letter-spacing:4px;text-transform:uppercase;font-weight:400}
+.step-title small{color:var(--cream-soft);font-size:11px;font-family:'Cinzel',serif;letter-spacing:2px}
+
+.service-options{display:grid;grid-template-columns:1fr;gap:0;margin-bottom:30px;border-top:1px solid var(--line)}
+.svc-option{display:flex;justify-content:space-between;align-items:center;padding:22px 4px;border-bottom:1px solid var(--line);cursor:pointer;transition:all .3s}
+.svc-option:hover{padding-right:14px;background:var(--black-3)}
+.svc-option.selected{padding-right:14px;background:var(--black-3)}
+.svc-option.selected .svc-option-name{color:var(--gold)}
+.svc-option-name{font-family:'Cinzel',serif;color:var(--cream);font-weight:400;font-size:13px;letter-spacing:3px;text-transform:uppercase;transition:color .3s}
+.svc-option-meta{font-size:11px;color:var(--cream-soft);margin-top:6px;font-family:'Cinzel',serif;letter-spacing:2px}
+.svc-option-price{font-family:'Cormorant Garamond',serif;color:var(--cream);font-size:24px;font-weight:400;font-style:italic}
+.svc-option.selected .svc-option-price{color:var(--gold)}
+
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.cal-month{font-family:'Cinzel',serif;font-size:14px;color:var(--cream);font-weight:400;letter-spacing:3px;text-transform:uppercase}
+.cal-nav{display:flex;gap:6px}
+.cal-nav button{width:36px;height:36px;background:transparent;border:1px solid var(--line);color:var(--cream);cursor:pointer;display:grid;place-items:center;font-size:14px;transition:all .3s}
+.cal-nav button:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:30px}
+.cal-day-name{text-align:center;font-size:9px;color:var(--gold);letter-spacing:2px;padding:10px 0;text-transform:uppercase;font-family:'Cinzel',serif}
+.cal-day{aspect-ratio:1;display:grid;place-items:center;background:transparent;border:1px solid transparent;cursor:pointer;transition:all .25s;font-size:13px;font-family:'Cormorant Garamond',serif;color:var(--cream);font-weight:400}
+.cal-day.empty{cursor:default}
+.cal-day.disabled{opacity:.2;cursor:not-allowed;color:var(--cream-soft)}
+.cal-day.closed{opacity:.3;cursor:not-allowed;color:var(--rose);text-decoration:line-through}
+.cal-day:not(.disabled):not(.empty):not(.closed):hover{border-color:var(--gold);color:var(--gold)}
+.cal-day.today{border-color:var(--gold);opacity:.7}
+.cal-day.selected{background:var(--cream);color:var(--black);border-color:var(--cream);font-weight:600}
+
+.times-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.time-slot{padding:14px 8px;background:transparent;border:1px solid var(--line);text-align:center;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream);transition:all .25s;font-style:italic}
+.time-slot:hover{border-color:var(--gold);color:var(--gold)}
+.time-slot.selected{background:var(--cream);color:var(--black);border-color:var(--cream);font-weight:500}
+.time-slot.unavailable{opacity:.25;cursor:not-allowed;text-decoration:line-through}
+
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.input-row.full{grid-template-columns:1fr}
+.field label{display:block;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:10px;text-transform:uppercase}
+.field input{width:100%;padding:14px 0;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--cream);font-family:'Cormorant Garamond',serif;font-size:16px;outline:none;transition:border-color .3s}
+.field input:focus{border-bottom-color:var(--gold)}
+.field input::placeholder{color:var(--cream-soft);opacity:.4;font-style:italic}
+
+.confirm-card{padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:24px}
+.confirm-card-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;font-size:14px}
+.confirm-card-label{color:var(--cream-soft);font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase}
+.confirm-card-value{color:var(--cream);font-weight:400;font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic}
+
+.btn-confirm-wa{width:100%;padding:20px;background:var(--cream);color:var(--black);border:none;font-family:'Cinzel',serif;font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:all .3s;letter-spacing:4px;text-transform:uppercase}
+.btn-confirm-wa:hover{background:var(--gold)}
+
+.step-actions{display:flex;gap:14px;margin-top:36px}
+.step-actions button{flex:1;padding:18px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;cursor:pointer;border:none;font-weight:400;text-transform:uppercase;transition:all .35s}
+.btn-back{background:transparent;color:var(--cream);border:1px solid var(--line)!important}
+.btn-back:hover{border-color:var(--cream)!important}
+.btn-next{background:var(--cream);color:var(--black)}
+.btn-next:hover{background:var(--gold)}
+.btn-next:disabled{opacity:.3;cursor:not-allowed;background:var(--black-3);color:var(--cream-soft)}
+
+.success-screen{text-align:center;padding:30px 20px}
+.success-icon{width:80px;height:80px;margin:0 auto 30px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);animation:successPop .6s ease}
+@keyframes successPop{0%{transform:scale(0);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+.success-title{font-family:'Cinzel',serif;font-size:24px;color:var(--cream);margin-bottom:16px;font-weight:400;letter-spacing:4px;text-transform:uppercase}
+.success-msg{color:var(--cream-soft);margin-bottom:30px;line-height:1.9;font-size:14px}
+.confirmation-no{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:18px;padding:18px;border:1px dashed var(--gold);margin-bottom:30px}
+.add-cal-section{margin-bottom:30px}
+.add-cal-title{font-family:'Cinzel',serif;font-size:11px;color:var(--cream-soft);margin-bottom:18px;letter-spacing:3px;text-transform:uppercase}
+.cal-buttons{display:flex;flex-direction:column;gap:10px}
+.cal-btn{padding:16px;border:1px solid var(--line);background:transparent;color:var(--cream);font-family:'Cinzel',serif;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:all .3s;text-decoration:none;letter-spacing:2px;text-transform:uppercase}
+.cal-btn:hover{border-color:var(--gold);color:var(--gold)}
+.cal-btn svg{height:18px}
+
+/* ============== TESTIMONIALS ============== */
+.testimonials{background:var(--black);padding:140px 6vw}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;margin-top:60px}
+.testimonial{text-align:center;padding:40px 30px;border:1px solid var(--line);position:relative;background:var(--black-2);transition:all .4s}
+.testimonial:hover{border-color:var(--gold)}
+.test-quote{font-family:'Cormorant Garamond',serif;font-size:80px;color:var(--gold);line-height:1;margin-bottom:14px;opacity:.6;font-style:italic}
+.test-text{color:var(--cream);font-size:16px;line-height:1.9;margin-bottom:30px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300}
+.test-divider{width:40px;height:1px;background:var(--gold);margin:0 auto 18px;opacity:.5}
+.test-name{font-family:'Cinzel',serif;font-size:13px;color:var(--cream);letter-spacing:4px;text-transform:uppercase;margin-bottom:6px}
+.test-role{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold);font-style:italic}
+.test-stars{color:var(--gold);margin-bottom:14px;letter-spacing:3px;font-size:13px}
+
+/* ============== CONTACT ============== */
+.contact{background:var(--dark-warm);padding:140px 6vw}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.2fr;border:1px solid var(--line);background:var(--black);overflow:hidden;max-width:1200px;margin:0 auto}
+.contact-info{padding:70px 60px}
+.contact-info h3{font-family:'Cinzel',serif;font-size:32px;color:var(--cream);font-weight:400;margin-bottom:8px;letter-spacing:5px;text-transform:uppercase}
+.contact-info .contact-tag{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:18px;margin-bottom:42px}
+.contact-detail{display:flex;align-items:flex-start;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
+.contact-detail:last-child{border-bottom:none}
+.contact-icon{width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);flex-shrink:0}
+.contact-text{flex:1}
+.contact-label{font-family:'Cinzel',serif;font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.contact-value{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--cream);font-weight:400;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-style:italic}
+.contact-value a{color:var(--cream);text-decoration:none;transition:color .3s}
+.contact-value a:hover{color:var(--gold)}
+.contact-action{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;font-family:'Cinzel',serif;font-size:10px;font-weight:500;text-decoration:none;font-style:normal;letter-spacing:2px;text-transform:uppercase;transition:all .3s}
+.contact-action.wa{background:#25D366;color:#fff!important}
+.contact-action.wa:hover{background:#1ea952;transform:translateY(-1px)}
+.contact-action.ig{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);color:#fff!important}
+.contact-action.ig:hover{transform:translateY(-1px)}
+.contact-action svg{height:13px}
+.contact-map{position:relative;background:var(--black-3);overflow:hidden;min-height:400px}
+.contact-map img{width:100%;height:100%;object-fit:cover;opacity:.4}
+.map-pin{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--cream);color:var(--black);padding:16px 28px;font-family:'Cinzel',serif;font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.map-pin::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);border-left:10px solid transparent;border-right:10px solid transparent;border-top:12px solid var(--cream)}
+
+/* ============== FOOTER ============== */
+footer{background:var(--black);color:var(--cream);padding:80px 6vw 40px;border-top:1px solid var(--line);position:relative;z-index:2}
+.footer-top{text-align:center;padding-bottom:60px;border-bottom:1px solid var(--line);margin-bottom:50px}
+.footer-brand{font-family:'Cinzel',serif;font-size:32px;color:var(--cream);margin-bottom:14px;font-weight:400;letter-spacing:8px;text-transform:uppercase}
+.footer-tag{color:var(--gold);font-size:14px;font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:3px;margin-bottom:30px}
+.footer-social{display:flex;gap:14px;justify-content:center}
+.footer-social a{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--cream);text-decoration:none;transition:all .3s}
+.footer-social a:hover{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:50px;margin-bottom:50px}
+.footer-col h5{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);margin-bottom:24px;letter-spacing:4px;text-transform:uppercase;font-weight:500}
+.footer-col a,.footer-col p{display:block;color:var(--cream-soft);text-decoration:none;font-size:14px;margin-bottom:14px;line-height:1.7;font-family:'Cormorant Garamond',serif;font-style:italic;transition:color .3s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{padding-top:30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;color:var(--cream-soft);font-size:11px;font-family:'Cinzel',serif;letter-spacing:2px;opacity:.6;text-transform:uppercase}
+
+/* ============== FLOATING ============== */
+.wa-float{position:fixed;bottom:30px;left:30px;z-index:99;width:58px;height:58px;background:#25D366;color:#fff;border-radius:50%;display:grid;place-items:center;box-shadow:0 12px 30px rgba(37,211,102,.4);text-decoration:none;transition:transform .3s;animation:waPulse 2.5s infinite}
+@keyframes waPulse{0%,100%{box-shadow:0 12px 30px rgba(37,211,102,.4)}50%{box-shadow:0 12px 40px rgba(37,211,102,.7)}}
+.wa-float:hover{transform:scale(1.1)}
+
+.admin-fab{position:fixed;bottom:30px;right:30px;z-index:99;width:48px;height:48px;background:var(--black-3);color:var(--cream);border:1px solid var(--gold);border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:all .3s;opacity:.6}
+.admin-fab:hover{opacity:1;background:var(--gold);color:var(--black)}
+
+/* ============== ADMIN PANEL ============== */
+.admin-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+.admin-overlay.active{display:flex}
+.admin-modal{background:var(--black-2);border:1px solid var(--gold);width:100%;max-width:680px;max-height:90vh;overflow-y:auto;color:var(--cream)}
+.admin-header{padding:30px 40px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--black-2);z-index:2}
+.admin-header h3{font-family:'Cinzel',serif;font-size:18px;color:var(--gold);font-weight:400;letter-spacing:4px;text-transform:uppercase}
+.admin-close{background:transparent;border:1px solid var(--line);width:36px;height:36px;cursor:pointer;font-size:18px;color:var(--cream);display:grid;place-items:center;transition:all .3s}
+.admin-close:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.admin-body{padding:40px}
+.admin-section{margin-bottom:42px}
+.admin-section h4{font-family:'Cinzel',serif;font-size:13px;color:var(--cream);font-weight:400;margin-bottom:8px;letter-spacing:3px;text-transform:uppercase}
+.admin-section-desc{font-size:13px;color:var(--cream-soft);margin-bottom:20px;font-family:'Cormorant Garamond',serif;font-style:italic}
+.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day-toggle{padding:14px 6px;text-align:center;border:1px solid var(--line);background:transparent;cursor:pointer;font-family:'Cinzel',serif;font-size:10px;color:var(--cream-soft);letter-spacing:2px;text-transform:uppercase;transition:all .25s}
+.day-toggle.on{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.day-toggle:hover{border-color:var(--gold)}
+.times-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.time-chip{display:flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid var(--line);color:var(--cream);font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic}
+.time-chip button{background:none;border:none;color:var(--gold);cursor:pointer;font-size:14px;padding:0;opacity:.6}
+.time-chip button:hover{opacity:1}
+.add-time-row{display:flex;gap:10px}
+.add-time-row input{flex:1;padding:12px 14px;background:transparent;border:1px solid var(--line);font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);outline:none;font-style:italic}
+.add-time-row input:focus{border-color:var(--gold)}
+.add-time-row button{padding:12px 22px;background:var(--gold);color:var(--black);border:none;font-family:'Cinzel',serif;font-weight:500;cursor:pointer;letter-spacing:2px;font-size:11px;text-transform:uppercase}
+.add-time-row button:hover{background:var(--gold-light)}
+.admin-info{background:rgba(184,146,78,.08);border:1px solid var(--line);padding:18px 22px;font-size:13px;color:var(--cream-soft);line-height:1.9;font-family:'Cormorant Garamond',serif}
+.admin-info strong{color:var(--gold);font-weight:500;font-style:normal;font-family:'Cinzel',serif;letter-spacing:1.5px;font-size:11px;text-transform:uppercase}
+
+/* MOBILE BAR */
+.mobile-cta-bar{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);border-top:1px solid var(--gold);padding:14px 16px;z-index:97;align-items:center;gap:10px}
+.mobile-cta-bar a{flex:0 0 auto;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;text-decoration:none;transition:transform .3s}
+.mobile-cta-bar a:active{transform:scale(.95)}
+.mobile-cta-bar a.wa-mini{background:#25D366;color:#fff}
+.mobile-cta-bar a.ig-mini{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);color:#fff}
+.mobile-cta-bar a.tel-mini{background:transparent;color:var(--cream);border:1px solid var(--gold)}
+.mobile-cta-bar button{flex:1;padding:14px;background:var(--cream);color:var(--black);border:none;font-family:'Cinzel',serif;font-weight:500;font-size:11px;cursor:pointer;letter-spacing:3px;text-transform:uppercase}
+.mobile-cta-bar button:active{background:var(--gold)}
+
+/* ============== RESPONSIVE ============== */
+@media(max-width:1100px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .service-card:nth-child(3n){border-right:1px solid var(--line)}
+  .service-card:nth-child(2n){border-right:none}
+  .service-card:nth-child(n+3){border-top:1px solid var(--line)}
+  .testimonials-grid{grid-template-columns:1fr;gap:30px}
+  .gallery-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:980px){
+  nav{padding:16px 5vw}
+  .nav-links,.nav-cta{display:none}
+  .menu-toggle{display:block}
+  .brand-name{font-size:16px;letter-spacing:4px}
+  .brand-ar{font-size:12px}
+  .brand-logo{width:40px;height:40px}
+  
+  .hero-content{padding-top:100px}
+  .section-pad,.booking,.testimonials,.contact{padding:80px 5vw}
+  .section-head{margin-bottom:60px}
+  
+  .about-grid{grid-template-columns:1fr}
+  .about-img-wrap{min-height:400px;order:1}
+  .about-text{padding:60px 30px;order:2}
+  
+  .services-grid{grid-template-columns:1fr}
+  .service-card{border-right:none!important;border-bottom:1px solid var(--line)}
+  
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  
+  .booking-wrap{grid-template-columns:1fr}
+  .booking-summary{padding:50px 30px;border-left:none;border-bottom:1px solid var(--line);order:2}
+  .booking-form{padding:50px 30px;order:1}
+  
+  .contact-wrap{grid-template-columns:1fr}
+  .contact-info{padding:50px 30px}
+  .contact-map{min-height:280px}
+  
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center}
+  
+  .wa-float,.admin-fab{display:none}
+  .mobile-cta-bar{display:flex}
+  body{padding-bottom:78px}
+  
+  .days-grid{grid-template-columns:repeat(4,1fr)}
+}
+
+@media(max-width:520px){
+  .hero h1{letter-spacing:5px}
+  .hero h1 .small{letter-spacing:8px}
+  .hero h1 em{letter-spacing:4px;margin-top:24px}
+  .hero-actions{flex-direction:column;gap:12px}
+  .hero-actions button{width:100%}
+  .section-title{letter-spacing:4px}
+  
+  .footer-grid{grid-template-columns:1fr;gap:36px}
+  
+  .gallery-grid{grid-template-columns:1fr;gap:2px}
+  .gallery-item{aspect-ratio:1}
+  
+  .booking-summary,.booking-form,.contact-info,.about-text{padding:40px 24px}
+  .input-row{grid-template-columns:1fr}
+  .times-grid{grid-template-columns:repeat(2,1fr)}
+  .step-actions{flex-direction:column-reverse}
+  
+  .admin-body,.admin-header{padding:24px}
+  .testimonial{padding:30px 24px}
+}
+</style>
+</head>
+<body>
+<div class="bg-grain"></div>
+<nav>
+  <a href="#" class="brand">
+    <div class="brand-logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 12 C 5 6, 19 6, 22 12 C 19 18, 5 18, 2 12 Z"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg>
+    </div>
+    <div class="brand-text">
+      <span class="brand-name">ARWA</span>
+      <span class="brand-ar">— أروى بيوتي —</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#story">Story</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+  <button class="menu-toggle" id="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="drawer-overlay" id="drawer-overlay" onclick="toggleMenu()"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+  <a href="#story" onclick="toggleMenu()">Story</a>
+  <a href="#testimonials" onclick="toggleMenu()">Testimonials</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#booking" onclick="toggleMenu()" class="mobile-drawer-cta">Book Now ✦</a>
+  <div class="mobile-drawer-social">
+    <a href="https://www.instagram.com/lashes.1ar" target="_blank" aria-label="Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+    </a>
+    <a href="https://wa.me/966530968685" target="_blank" aria-label="WhatsApp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+    </a>
+    <a href="tel:+966530968685" aria-label="Phone">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <img class="hero-bg" src="https://images.unsplash.com/photo-1583241475880-0837f2e5f4dd?w=2400&q=90&auto=format&fit=crop" alt="Beauty">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Arwa Beauty Studio</div>
+    <h1>
+      <span class="small">Reveal</span>
+      Your True
+      <span style="display:block">Beauty</span>
+      <em>اكشفي عن جمالكِ الحقيقي</em>
+    </h1>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+        Book Appointment
+      </button>
+      <button class="btn-ghost" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+        Our Story
+      </button>
+    </div>
+  </div>
+  <div class="scroll-indicator">Scroll</div>
+</section>
+
+<!-- ============== ABOUT ============== -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=85&auto=format&fit=crop" alt="Arwa Beauty Studio">
+    </div>
+    <div class="about-text">
+      <div class="about-eyebrow">Welcome</div>
+      <h2>
+        Welcome to<br>Arwa Beauty
+        <em>مرحباً بكِ في أروى بيوتي</em>
+      </h2>
+      <p>Arwa Beauty offers a unique experience by providing the utmost care of details to bring comfort to our clients. We provide <strong>high-class lash services</strong> for modern women with best-in-class experts.</p>
+      <p>يسعى استوديو أروى بيوتي لتقديم خدمة متميزة عبر الاهتمام بأدق تفاصيل العناية بالعميلات، وتقديم أجود أنواع خدمات تركيب الرموش التي تحتاجها المرأة العصرية. مع تصميمنا المتميز و الديكور الباريسي، نمنحكِ الشعور بالراحة و الاهتمام.</p>
+      <a href="#story" class="about-cta">Read Our Story →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SERVICES ============== -->
+<section class="services section-pad" id="services">
+  <div class="section-head">
+    <div class="section-eyebrow">Our Services</div>
+    <h2 class="section-title">
+      The Art of Lashes
+      <em>فنّ الرموش</em>
+    </h2>
+    <p class="section-sub">A curated selection of premium lash services, designed to enhance your natural beauty with timeless elegance.</p>
+  </div>
+  <div class="services-grid" id="services-grid"></div>
+</section>
+
+<!-- ============== GALLERY ============== -->
+<section class="gallery section-pad" id="gallery">
+  <div class="section-head">
+    <div class="section-eyebrow">Gallery</div>
+    <h2 class="section-title">
+      Our Work
+      <em>أعمالنا</em>
+    </h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <span class="gallery-tag">Featured</span>
+      <img src="https://images.unsplash.com/photo-1583241475880-0837f2e5f4dd?w=800&q=85&auto=format&fit=crop" alt="Mega Volume">
+      <span class="gallery-label">— Mega Volume</span>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=800&q=85&auto=format&fit=crop" alt="Classic">
+      <span class="gallery-label">— Classic</span>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800&q=85&auto=format&fit=crop" alt="Hybrid">
+      <span class="gallery-label">— Hybrid</span>
+    </div>
+    <div class="gallery-item">
+      <span class="gallery-tag">Bridal</span>
+      <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=800&q=85&auto=format&fit=crop" alt="Bridal">
+      <span class="gallery-label">— Bridal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=85&auto=format&fit=crop" alt="Volume">
+      <span class="gallery-label">— Volume</span>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=85&auto=format&fit=crop" alt="Lift">
+      <span class="gallery-label">— Lash Lift</span>
+    </div>
+    <div class="gallery-item">
+      <span class="gallery-tag">New</span>
+      <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&q=85&auto=format&fit=crop" alt="Spring">
+      <span class="gallery-label">— Spring Collection</span>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=85&auto=format&fit=crop" alt="Natural">
+      <span class="gallery-label">— Natural</span>
+    </div>
+  </div>
+  <div class="gallery-cta">
+    <a href="https://www.instagram.com/lashes.1ar" target="_blank">Follow @lashes.1ar →</a>
+  </div>
+</section>
+
+<!-- ============== STORY ============== -->
+<section class="story-section" id="story">
+  <div class="story-content">
+    <div class="story-eyebrow">Our Story</div>
+    <p class="story-quote">
+      "Every lash we craft is a delicate work of art, and every client leaves with renewed confidence and a captivating gaze. This is our promise to you."
+    </p>
+    <div class="story-author">— Arwa</div>
+  </div>
+</section>
+
+<!-- ============== BOOKING ============== -->
+<section class="booking" id="booking">
+  <div class="section-head">
+    <div class="section-eyebrow">Book Now</div>
+    <h2 class="section-title">
+      Reserve Your Moment
+      <em>احجزي موعدكِ</em>
+    </h2>
+    <p class="section-sub">Choose your service, select a date, and confirm instantly via WhatsApp.</p>
+  </div>
+  <div class="booking-wrap">
+    <aside class="booking-summary">
+      <div class="summary-title">Your Booking</div>
+      <div class="summary-desc">— ملخص الحجز —</div>
+      <div class="summary-block"><div class="summary-label">Service / الخدمة</div><div class="summary-value empty" id="sum-service">— Not selected —</div></div>
+      <div class="summary-block"><div class="summary-label">Date / التاريخ</div><div class="summary-value empty" id="sum-date">— Not selected —</div></div>
+      <div class="summary-block"><div class="summary-label">Time / الوقت</div><div class="summary-value empty" id="sum-time">— Not selected —</div></div>
+      <div class="summary-block"><div class="summary-label">Name / الاسم</div><div class="summary-value empty" id="sum-name">— Not entered —</div></div>
+      <div class="summary-total"><span>Total</span><span id="sum-total">٠ SAR</span></div>
+      <div class="summary-trust">Instant Confirmation via WhatsApp<br>Cancel up to 24h before</div>
+    </aside>
+    <div class="booking-form">
+      <div class="steps-indicator">
+        <div class="step-pill active" data-pill="1"></div>
+        <div class="step-pill" data-pill="2"></div>
+        <div class="step-pill" data-pill="3"></div>
+        <div class="step-pill" data-pill="4"></div>
+      </div>
+      <div class="form-step active" data-step="1">
+        <div class="step-title"><span>Choose Service</span><small>1 / 4</small></div>
+        <div class="service-options" id="service-options"></div>
+        <div class="step-actions"><button class="btn-next" onclick="nextStep()" id="next-1" disabled>Next →</button></div>
+      </div>
+      <div class="form-step" data-step="2">
+        <div class="step-title"><span>Date & Time</span><small>2 / 4</small></div>
+        <div class="cal-head"><div class="cal-month" id="cal-month"></div><div class="cal-nav"><button onclick="changeMonth(-1)">‹</button><button onclick="changeMonth(1)">›</button></div></div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div id="time-section" style="display:none">
+          <div class="step-title" style="margin-top:10px"><span>Available Times</span></div>
+          <div class="times-grid" id="times-grid"></div>
+        </div>
+        <div class="step-actions">
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()" id="next-2" disabled>Next →</button>
+        </div>
+      </div>
+      <div class="form-step" data-step="3">
+        <div class="step-title"><span>Your Details</span><small>3 / 4</small></div>
+        <div class="input-row full"><div class="field"><label>Full Name / الاسم</label><input type="text" id="f-name" placeholder="Noura Al-Otaibi" oninput="validateStep3()"></div></div>
+        <div class="input-row">
+          <div class="field"><label>Phone / الجوال</label><input type="tel" id="f-phone" placeholder="05xxxxxxxx" oninput="validateStep3()"></div>
+          <div class="field"><label>Email (Optional)</label><input type="email" id="f-email" placeholder="you@email.com"></div>
+        </div>
+        <div class="input-row full"><div class="field"><label>Notes / ملاحظات</label><input type="text" id="f-notes" placeholder="Allergies, preferences..."></div></div>
+        <div class="step-actions">
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()" id="next-3" disabled>Next →</button>
+        </div>
+      </div>
+      <div class="form-step" data-step="4">
+        <div class="step-title"><span>Confirm Booking</span><small>4 / 4</small></div>
+        <div class="confirm-card" id="confirm-card"></div>
+        <button class="btn-confirm-wa" onclick="confirmBooking()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          Confirm via WhatsApp
+        </button>
+        <p style="text-align:center;font-size:11px;color:var(--cream-soft);margin-top:16px;font-family:'Cinzel',serif;letter-spacing:2px;text-transform:uppercase;opacity:.7">WhatsApp will open with your booking details</p>
+        <div class="step-actions" style="margin-top:24px"><button class="btn-back" onclick="prevStep()">← Back</button></div>
+      </div>
+      <div class="form-step" data-step="5">
+        <div class="success-screen">
+          <div class="success-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div class="success-title">Booking Sent</div>
+          <p class="success-msg">Thank you for choosing <strong>Arwa Beauty</strong>. We will contact you shortly to confirm your appointment.</p>
+          <div class="confirmation-no" id="confirm-no">Booking #: ARW-XXXXXX</div>
+          <div class="add-cal-section">
+            <div class="add-cal-title">Add to Your Calendar</div>
+            <div class="cal-buttons">
+              <a href="#" class="cal-btn" id="btn-google-cal" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+                Google Calendar
+              </a>
+              <button class="cal-btn" onclick="downloadICS()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Apple / Outlook
+              </button>
+            </div>
+          </div>
+          <button onclick="resetBooking()" style="padding:14px 36px;border:1px solid var(--gold);background:transparent;color:var(--cream);font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;cursor:pointer;text-transform:uppercase">New Booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TESTIMONIALS ============== -->
+<section class="testimonials" id="testimonials">
+  <div class="section-head">
+    <div class="section-eyebrow">Testimonials</div>
+    <h2 class="section-title">
+      What People Say
+      <em>كلمات عميلاتنا</em>
+    </h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <div class="test-quote">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">Very friendly and professional staff. The place is really clean and tidy. Special thanks to the lovely lady behind this success.</p>
+      <div class="test-divider"></div>
+      <div class="test-name">Lama</div>
+      <div class="test-role">Client since 2024</div>
+    </div>
+    <div class="testimonial">
+      <div class="test-quote">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">حجزت قبل عرسي بأسبوع، والنتيجة فاقت توقعاتي. أروى وفريقها يفهمون بسرعة الإطلالة اللي تبيها العروس.</p>
+      <div class="test-divider"></div>
+      <div class="test-name">Sara</div>
+      <div class="test-role">Bride 2025</div>
+    </div>
+    <div class="testimonial">
+      <div class="test-quote">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">An exceptional experience from start to finish. The ambience is calm and elegant, and the results speak for themselves. Highly recommended.</p>
+      <div class="test-divider"></div>
+      <div class="test-name">Reem</div>
+      <div class="test-role">Loyal Client</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACT ============== -->
+<section class="contact" id="contact">
+  <div class="section-head">
+    <div class="section-eyebrow">Contact</div>
+    <h2 class="section-title">
+      Visit Us
+      <em>زورينا</em>
+    </h2>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h3>Arwa Beauty</h3>
+      <div class="contact-tag">— أروى بيوتي —</div>
+      <div class="contact-detail">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="contact-text">
+          <div class="contact-label">Address</div>
+          <div class="contact-value">Riyadh — Al-Nakheel<br>الرياض — حي النخيل</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div class="contact-text">
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">
+            <a href="tel:+966530968685">+966 53 096 8685</a>
+            <a href="https://wa.me/966530968685" target="_blank" class="contact-action wa">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></div>
+        <div class="contact-text">
+          <div class="contact-label">Instagram</div>
+          <div class="contact-value">
+            <a href="https://www.instagram.com/lashes.1ar" target="_blank">@lashes.1ar</a>
+            <a href="https://www.instagram.com/lashes.1ar" target="_blank" class="contact-action ig">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+              Follow
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="contact-text">
+          <div class="contact-label">Hours</div>
+          <div class="contact-value">Sat — Thu: 11AM — 10PM<br>Friday: 2PM — 10PM</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-map">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80&auto=format&fit=crop" alt="Studio">
+      <div class="map-pin">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>
+        Al-Nakheel, Riyadh
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">ARWA</div>
+    <div class="footer-tag">— أروى بيوتي —</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/lashes.1ar" target="_blank" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+      <a href="https://wa.me/966530968685" target="_blank" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>
+      <a href="tel:+966530968685" aria-label="Phone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg></a>
+    </div>
+  </div>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h5>Menu</h5>
+      <a href="#about">About</a><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#booking">Book</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <p>Riyadh — Al-Nakheel</p>
+      <p>+966 53 096 8685</p>
+      <p>@lashes.1ar</p>
+    </div>
+    <div class="footer-col">
+      <h5>Hours</h5>
+      <p>Sat — Thu<br>11:00 AM — 10:00 PM</p>
+      <p>Friday<br>2:00 PM — 10:00 PM</p>
+    </div>
+    <div class="footer-col">
+      <h5>Newsletter</h5>
+      <p>Join our list for exclusive offers and beauty tips.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Arwa Beauty — All Rights Reserved</div>
+    <div>Made with ✦ in Riyadh</div>
+  </div>
+</footer>
+
+<!-- MOBILE BAR -->
+<div class="mobile-cta-bar">
+  <a href="https://wa.me/966530968685" target="_blank" class="wa-mini" aria-label="WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/lashes.1ar" target="_blank" class="ig-mini" aria-label="Instagram">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+  </a>
+  <a href="tel:+966530968685" class="tel-mini" aria-label="Call">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+  <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now ✦</button>
+</div>
+
+<a href="https://wa.me/966530968685" target="_blank" class="wa-float" title="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
+
+<button class="admin-fab" onclick="openAdmin()" title="Admin">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+</button>
+
+<div class="admin-overlay" id="admin-overlay" onclick="if(event.target===this) closeAdmin()">
+  <div class="admin-modal">
+    <div class="admin-header">
+      <h3>Admin Panel</h3>
+      <button class="admin-close" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="admin-body">
+      <div class="admin-info" style="margin-bottom:30px"><strong>Welcome, Arwa</strong><br><br>Control your working days, available times, and settings. All changes are saved automatically in your browser.</div>
+      <div class="admin-section">
+        <h4>Working Days / أيام العمل</h4>
+        <div class="admin-section-desc">Select days when the studio is open.</div>
+        <div class="days-grid" id="days-grid"></div>
+      </div>
+      <div class="admin-section">
+        <h4>Available Times / الأوقات المتاحة</h4>
+        <div class="admin-section-desc">Define booking slots for clients.</div>
+        <div class="times-list" id="times-list"></div>
+        <div class="add-time-row">
+          <input type="text" id="new-time-input" placeholder="11:00 AM or 02:30 PM">
+          <button onclick="addTimeSlot()">+ Add</button>
+        </div>
+      </div>
+      <div class="admin-section">
+        <h4>Calendar Integration</h4>
+        <div class="admin-info">
+          <strong>WhatsApp Auto-Notify</strong><br>Each booking is sent to your WhatsApp <strong>+966 53 096 8685</strong> with all details.<br><br>
+          <strong>Google Calendar</strong><br>Clients get an "Add to Calendar" button after booking.<br><br>
+          <strong>Apple / Outlook</strong><br>An .ics file compatible with all calendar apps.
+        </div>
+      </div>
+      <button class="btn-confirm-wa" style="background:var(--gold)" onclick="closeAdmin()">Save & Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CONFIG = {
+  ownerPhone: '966530968685',
+  brandName: 'Arwa Beauty',
+  brandLocation: 'Riyadh - Al-Nakheel',
+  instagramUrl: 'https://www.instagram.com/lashes.1ar',
+  defaultDays: [0,1,2,3,4,5,6],
+  defaultTimes: ['11:00 AM','12:30 PM','02:00 PM','03:30 PM','05:00 PM','06:30 PM','08:00 PM','09:30 PM'],
+  fridayTimes: ['02:00 PM','03:30 PM','05:00 PM','06:30 PM','08:00 PM'],
+  services: [
+    {id:'classic',name:'Classic Lashes',nameAr:'كلاسيك',price:180,duration:'90 min',mins:90,desc:'One natural extension per lash. A subtle, elegant touch for those who prefer the natural look.'},
+    {id:'hybrid',name:'Hybrid Lashes',nameAr:'هايبرد',price:250,duration:'120 min',mins:120,desc:'A blend of classic and volume for balanced depth and fullness. Perfect graduated look.'},
+    {id:'volume',name:'Volume Lashes',nameAr:'ڤوليوم',price:320,duration:'150 min',mins:150,desc:'Light fans of 3-5 lashes per natural lash. Captivating density and dramatic elegance.'},
+    {id:'mega',name:'Mega Volume',nameAr:'ميجا ڤوليوم',price:450,duration:'180 min',mins:180,desc:'6-10 lash fans per natural lash. For special occasions and brides seeking a bold look.'},
+    {id:'lift',name:'Lash Lift & Tint',nameAr:'ليفت وصبغ',price:120,duration:'60 min',mins:60,desc:'Natural lash lift and luxurious tint lasting 6 weeks. Lifted natural look without extensions.'},
+    {id:'fill',name:'Fill Session',nameAr:'تعبئة',price:140,duration:'75 min',mins:75,desc:'Maintenance after 2-3 weeks to keep density and the polished look always perfect.'}
+  ]
+};
+
+const state = { step:1, service:null, date:null, time:null, customer:{name:'',phone:'',email:'',notes:''}, lastBooking:null };
+let settings = { availableDays: [...CONFIG.defaultDays], availableTimes: [...CONFIG.defaultTimes] };
+
+function loadSettings(){ try{ const s = localStorage.getItem('arwa-settings'); if(s) settings = JSON.parse(s); }catch(e){} }
+function saveSettings(){ try{ localStorage.setItem('arwa-settings', JSON.stringify(settings)); }catch(e){} }
+
+const monthsEn = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const daysEn = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const arabicNum = n => String(n).replace(/\d/g,d=>['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'][+d]);
+
+const lashIcons = [
+  '<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 30 Q30 15 55 30 Q30 45 5 30 Z"/><circle cx="30" cy="30" r="7"/><path d="M15 22 L13 14 M22 18 L21 8 M30 16 L30 6 M38 18 L39 8 M45 22 L47 14" stroke-linecap="round"/></svg>',
+  '<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 32 Q30 12 55 32 Q30 50 5 32 Z"/><circle cx="30" cy="32" r="8" fill="currentColor" opacity=".15"/><circle cx="30" cy="32" r="8"/><path d="M12 22 L8 10 M18 16 L15 4 M25 13 L24 0 M30 12 L30 -1 M35 13 L36 0 M42 16 L45 4 M48 22 L52 10" stroke-linecap="round" stroke-width="1.3"/></svg>',
+  '<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 34 Q30 8 55 34 Q30 52 5 34 Z"/><circle cx="30" cy="34" r="9" fill="currentColor" opacity=".2"/><circle cx="30" cy="34" r="9"/><g stroke-linecap="round" stroke-width="1.4"><path d="M10 22 L4 8"/><path d="M20 14 L17 -1"/><path d="M30 10 L30 -4"/><path d="M40 14 L43 -1"/><path d="M50 22 L56 8"/></g></svg>',
+  '<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 36 Q30 5 55 36 Q30 54 5 36 Z"/><circle cx="30" cy="36" r="10" fill="currentColor" opacity=".25"/><circle cx="30" cy="36" r="10"/><g stroke-linecap="round" stroke-width="1.6"><path d="M8 24 L0 6"/><path d="M16 16 L11 -2"/><path d="M22 12 L19 -4"/><path d="M30 9 L30 -6"/><path d="M38 12 L41 -4"/><path d="M44 16 L49 -2"/><path d="M52 24 L60 6"/></g></svg>',
+  '<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 30 Q30 18 55 30 Q30 42 5 30 Z"/><circle cx="30" cy="30" r="6"/><path d="M10 30 Q15 22 22 26" stroke-linecap="round"/><path d="M50 30 Q45 22 38 26" stroke-linecap="round"/></svg>',
+  '<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 30 Q30 15 55 30 Q30 45 5 30 Z"/><circle cx="30" cy="30" r="7"/><path d="M15 22 L13 14 M22 18 L21 8 M30 16 L30 6 M38 18 L39 8 M45 22 L47 14" stroke-linecap="round" stroke-dasharray="2 2"/></svg>'
+];
+
+function renderServiceCards(){
+  document.getElementById('services-grid').innerHTML = CONFIG.services.map((s,i)=>`
+    <article class="service-card" onclick="selectFromCard('${s.id}')">
+      <div class="service-num">No. ${String(i+1).padStart(2,'0')}</div>
+      <div class="service-icon">${lashIcons[i] || lashIcons[0]}</div>
+      <h3 class="service-name">${s.name}</h3>
+      <p class="service-desc">${s.desc}</p>
+      <div class="service-meta">
+        <div class="service-price">${s.price} <small>SAR</small></div>
+        <div class="service-duration">${s.duration}</div>
+      </div>
+    </article>`).join('');
+}
+
+function selectFromCard(id){
+  document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>selectService(id), 700);
+}
+
+function renderServiceOptions(){
+  document.getElementById('service-options').innerHTML = CONFIG.services.map(s=>`
+    <div class="svc-option" data-id="${s.id}" onclick="selectService('${s.id}')">
+      <div><div class="svc-option-name">${s.name}</div><div class="svc-option-meta">${s.duration} · ${s.nameAr}</div></div>
+      <div class="svc-option-price">${s.price} <small style="font-size:11px;color:var(--cream-soft);font-family:'Cinzel',serif;letter-spacing:1px;font-style:normal">SAR</small></div>
+    </div>`).join('');
+}
+
+function selectService(id){
+  state.service = CONFIG.services.find(s=>s.id===id);
+  document.querySelectorAll('.svc-option').forEach(el=>el.classList.toggle('selected',el.dataset.id===id));
+  document.getElementById('next-1').disabled = false;
+  updateSummary();
+}
+
+let calMonth = new Date().getMonth(), calYear = new Date().getFullYear();
+
+function renderCalendar(){
+  document.getElementById('cal-month').textContent = `${monthsEn[calMonth]} ${calYear}`;
+  const firstDay = new Date(calYear,calMonth,1).getDay();
+  const daysInMonth = new Date(calYear,calMonth+1,0).getDate();
+  const today = new Date(); today.setHours(0,0,0,0);
+  let html = daysEn.map(d=>`<div class="cal-day-name">${d}</div>`).join('');
+  for(let i=0;i<firstDay;i++) html += '<div class="cal-day empty"></div>';
+  for(let d=1;d<=daysInMonth;d++){
+    const date = new Date(calYear,calMonth,d);
+    const dow = date.getDay();
+    const isPast = date < today;
+    const isClosed = !settings.availableDays.includes(dow);
+    const isToday = date.getTime() === today.getTime();
+    const dateKey = `${calYear}-${calMonth}-${d}`;
+    const isSelected = state.date && state.date.key === dateKey;
+    let cls = 'cal-day';
+    const clickable = !isPast && !isClosed;
+    if(isPast) cls += ' disabled';
+    else if(isClosed) cls += ' closed';
+    if(isToday) cls += ' today';
+    if(isSelected) cls += ' selected';
+    html += `<div class="${cls}" ${clickable?`onclick="selectDate(${d})"`:''}>${d}</div>`;
+  }
+  document.getElementById('cal-grid').innerHTML = html;
+}
+
+function changeMonth(delta){
+  calMonth += delta;
+  if(calMonth>11){calMonth=0;calYear++}
+  if(calMonth<0){calMonth=11;calYear--}
+  renderCalendar();
+}
+
+function selectDate(d){
+  const date = new Date(calYear,calMonth,d);
+  state.date = {key:`${calYear}-${calMonth}-${d}`,obj:date,label:`${daysEn[date.getDay()]} ${d} ${monthsEn[calMonth]} ${calYear}`};
+  state.time = null;
+  renderCalendar(); renderTimeSlots();
+  document.getElementById('time-section').style.display = 'block';
+  validateStep2(); updateSummary();
+}
+
+function renderTimeSlots(){
+  const isFriday = state.date.obj.getDay() === 5;
+  const slots = isFriday ? CONFIG.fridayTimes : settings.availableTimes;
+  const seed = state.date.obj.getDate();
+  document.getElementById('times-grid').innerHTML = slots.map((t,i)=>{
+    const unav = (seed + i) % 6 === 0;
+    return `<div class="time-slot ${unav?'unavailable':''} ${state.time===t?'selected':''}" ${unav?'':`onclick="selectTime('${t}')"`}>${t}</div>`;
+  }).join('');
+}
+
+function selectTime(t){ state.time = t; renderTimeSlots(); validateStep2(); updateSummary(); }
+function validateStep2(){ document.getElementById('next-2').disabled = !(state.date && state.time); }
+
+function validateStep3(){
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  state.customer.name = name;
+  state.customer.phone = phone;
+  state.customer.email = document.getElementById('f-email').value.trim();
+  state.customer.notes = document.getElementById('f-notes').value.trim();
+  document.getElementById('next-3').disabled = !(name.length >= 3 && phone.length >= 9);
+  updateSummary();
+}
+
+function updateSummary(){
+  const els = {
+    'sum-service': state.service?.name,
+    'sum-date': state.date?.label,
+    'sum-time': state.time,
+    'sum-name': state.customer.name
+  };
+  Object.entries(els).forEach(([id,val])=>{
+    const el = document.getElementById(id);
+    if(val){ el.textContent = val; el.classList.remove('empty'); }
+  });
+  document.getElementById('sum-total').textContent = `${state.service ? state.service.price : 0} SAR`;
+}
+
+function showStep(n){
+  state.step = n;
+  document.querySelectorAll('.form-step').forEach(el=>el.classList.toggle('active', +el.dataset.step === n));
+  document.querySelectorAll('.step-pill').forEach(el=>{
+    const p = +el.dataset.pill;
+    el.classList.remove('active','done');
+    if(p < n) el.classList.add('done');
+    else if(p === n) el.classList.add('active');
+  });
+  if(n === 4) renderConfirmCard();
+}
+
+function renderConfirmCard(){
+  document.getElementById('confirm-card').innerHTML = `
+    <div class="confirm-card-row"><span class="confirm-card-label">Service</span><span class="confirm-card-value">${state.service.name}</span></div>
+    <div class="confirm-card-row"><span class="confirm-card-label">Date</span><span class="confirm-card-value">${state.date.label}</span></div>
+    <div class="confirm-card-row"><span class="confirm-card-label">Time</span><span class="confirm-card-value">${state.time}</span></div>
+    <div class="confirm-card-row"><span class="confirm-card-label">Name</span><span class="confirm-card-value">${state.customer.name}</span></div>
+    <div class="confirm-card-row"><span class="confirm-card-label">Phone</span><span class="confirm-card-value">${state.customer.phone}</span></div>
+    <div class="confirm-card-row"><span class="confirm-card-label">Total</span><span class="confirm-card-value">${state.service.price} SAR</span></div>`;
+}
+
+function nextStep(){ if(state.step < 4) showStep(state.step + 1); }
+function prevStep(){ if(state.step > 1) showStep(state.step - 1); }
+
+function confirmBooking(){
+  const confNo = 'ARW-' + Math.floor(Math.random() * 900000 + 100000);
+  state.lastBooking = { confNo, service: state.service, date: state.date, time: state.time, customer: {...state.customer} };
+
+  let msg = `*New Booking - ${CONFIG.brandName}*%0A%0A`;
+  msg += `*Booking #:* ${confNo}%0A`;
+  msg += `*Service:* ${state.service.name} (${state.service.nameAr})%0A`;
+  msg += `*Price:* ${state.service.price} SAR%0A`;
+  msg += `*Date:* ${state.date.label}%0A`;
+  msg += `*Time:* ${state.time}%0A%0A`;
+  msg += `*Name:* ${state.customer.name}%0A`;
+  msg += `*Phone:* ${state.customer.phone}`;
+  if(state.customer.email) msg += `%0A*Email:* ${state.customer.email}`;
+  if(state.customer.notes) msg += `%0A*Notes:* ${state.customer.notes}`;
+
+  window.open(`https://wa.me/${CONFIG.ownerPhone}?text=${msg}`, '_blank');
+  document.getElementById('confirm-no').textContent = `Booking #: ${confNo}`;
+  setupCalendarLinks();
+  showStep(5);
+}
+
+function getEventDateTime(){
+  const b = state.lastBooking;
+  const d = new Date(b.date.obj);
+  let [hm, period] = b.time.split(' ');
+  let [h, m] = hm.split(':').map(Number);
+  if(period === 'PM' && h !== 12) h += 12;
+  if(period === 'AM' && h === 12) h = 0;
+  d.setHours(h, m, 0, 0);
+  const end = new Date(d.getTime() + b.service.mins * 60000);
+  return { start: d, end };
+}
+
+function fmtICS(d){
+  const pad = n => String(n).padStart(2,'0');
+  return d.getUTCFullYear() + pad(d.getUTCMonth()+1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z';
+}
+
+function setupCalendarLinks(){
+  const b = state.lastBooking;
+  const { start, end } = getEventDateTime();
+  const title = encodeURIComponent(`${b.service.name} - ${CONFIG.brandName}`);
+  const details = encodeURIComponent(`${b.service.name}\nBooking #: ${b.confNo}\nPrice: ${b.service.price} SAR`);
+  const location = encodeURIComponent(CONFIG.brandLocation);
+  document.getElementById('btn-google-cal').href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmtICS(start)}/${fmtICS(end)}&details=${details}&location=${location}`;
+}
+
+function downloadICS(){
+  const b = state.lastBooking;
+  const { start, end } = getEventDateTime();
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Arwa Beauty//EN','BEGIN:VEVENT',
+    'UID:' + b.confNo + '@arwabeauty.sa','DTSTAMP:' + fmtICS(new Date()),
+    'DTSTART:' + fmtICS(start),'DTEND:' + fmtICS(end),
+    'SUMMARY:' + b.service.name + ' - ' + CONFIG.brandName,
+    'DESCRIPTION:Booking ' + b.confNo,'LOCATION:' + CONFIG.brandLocation,
+    'BEGIN:VALARM','TRIGGER:-PT2H','ACTION:DISPLAY','DESCRIPTION:Reminder','END:VALARM',
+    'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'arwa-beauty-' + b.confNo + '.ics';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 100);
+}
+
+function resetBooking(){
+  state.step=1; state.service=null; state.date=null; state.time=null;
+  state.customer={name:'',phone:'',email:'',notes:''}; state.lastBooking=null;
+  document.querySelectorAll('input').forEach(i=>i.value='');
+  document.querySelectorAll('.svc-option').forEach(el=>el.classList.remove('selected'));
+  document.getElementById('next-1').disabled=true;
+  document.getElementById('next-2').disabled=true;
+  document.getElementById('next-3').disabled=true;
+  document.getElementById('time-section').style.display='none';
+  ['sum-service','sum-date','sum-time','sum-name'].forEach(id=>{
+    const el = document.getElementById(id);
+    el.classList.add('empty');
+    el.textContent = id === 'sum-name' ? '— Not entered —' : '— Not selected —';
+  });
+  document.getElementById('sum-total').textContent='٠ SAR';
+  showStep(1); renderCalendar();
+}
+
+function openAdmin(){
+  document.getElementById('admin-overlay').classList.add('active');
+  renderAdminDays(); renderAdminTimes();
+}
+function closeAdmin(){
+  document.getElementById('admin-overlay').classList.remove('active');
+  saveSettings(); renderCalendar();
+}
+
+function renderAdminDays(){
+  document.getElementById('days-grid').innerHTML = daysEn.map((d,i)=>`
+    <div class="day-toggle ${settings.availableDays.includes(i)?'on':''}" onclick="toggleDay(${i})">${d}</div>`).join('');
+}
+function toggleDay(i){
+  const idx = settings.availableDays.indexOf(i);
+  if(idx > -1) settings.availableDays.splice(idx, 1);
+  else settings.availableDays.push(i);
+  renderAdminDays(); saveSettings();
+}
+
+function renderAdminTimes(){
+  document.getElementById('times-list').innerHTML = settings.availableTimes.map((t,i)=>`
+    <div class="time-chip">${t}<button onclick="removeTime(${i})">✕</button></div>`).join('') || '<div style="color:var(--cream-soft);font-size:13px;font-style:italic">No times. Add one below.</div>';
+}
+function addTimeSlot(){
+  const input = document.getElementById('new-time-input');
+  const v = input.value.trim();
+  if(v && !settings.availableTimes.includes(v)){
+    settings.availableTimes.push(v);
+    input.value = ''; renderAdminTimes(); saveSettings();
+  }
+}
+function removeTime(i){ settings.availableTimes.splice(i, 1); renderAdminTimes(); saveSettings(); }
+
+function toggleMenu(){
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('drawer-overlay');
+  const toggle = document.getElementById('menu-toggle');
+  drawer.classList.toggle('open');
+  overlay.classList.toggle('open');
+  toggle.classList.toggle('open');
+  document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+}
+
+loadSettings();
+renderServiceCards();
+renderServiceOptions();
+renderCalendar();
+
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background = window.scrollY > 60 ? 'rgba(10,10,10,.95)' : 'rgba(10,10,10,.7)';
+});
+
+if(window.location.hash === '#admin') openAdmin();
+</script>
+</body>
+</html>
