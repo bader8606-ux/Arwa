@@ -6,8 +6,9 @@ const status = document.getElementById("status");
 const SESSION = "villa-access-key-v1";
 async function unlock(code) {
   error.textContent = "";
-  status.textContent = "جارٍ فتح لوحة المشروع…";
+  status.textContent = "جارٍ فتح دفعات فلة العقيق…";
   button.disabled = true;
+  form.setAttribute("aria-busy", "true");
   try {
     if (!/^[A-Za-z0-9_-]{43}$/.test(code))
       throw Error("أدخل رمز الوصول الصحيح أو استخدم رابطك الخاص.");
@@ -59,6 +60,7 @@ async function unlock(code) {
     error.textContent = problem.message;
     status.textContent = "";
     button.disabled = false;
+    form.setAttribute("aria-busy", "false");
   }
 }
 form.addEventListener("submit", (event) => {
